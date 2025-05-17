@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WDD 231 - Home</title>
-    <link rel="stylesheet" href="styles/styles.css" />
-  </head>
+<link rel="stylesheet" href="styles/normalize.css">
+<link rel="stylesheet" href="styles/small.css">
+<link rel="stylesheet" href="styles/larger.css">
+
   <body>
     <header>
       <img src="images/michael.jpg" alt="Your Photo" />
@@ -17,6 +19,7 @@
       >
         <!-- Hamburger icon here -->
       </button>
+      <button id="darkModeToggle">🌙</button>
     </header>
 
     <nav class="navigation">
@@ -93,6 +96,9 @@
       <p id="creditCount"></p>
     </footer>
 
-    <script src="scripts/main.js"></script>
+    <script src="scripts/navigation.js" defer></script>
+    <script src="scripts/date.js" defer></script>
+    <script src="scripts/course.js" defer></script> <!-- Only on the page that needs course cards -->
+
   </body>
 </html>
