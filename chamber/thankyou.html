@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You - Membership Application</title>
+    <link rel="stylesheet" href="styles/form.css" />
+    <meta
+      name="description"
+      content="Thank you for joining the Chamber of Commerce. We appreciate your membership application."
+    />
+    <meta property="og:title" content="Thank You - Membership Application" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="images/thank-you.jpg" />
+    <meta property="og:url" content="https://yourwebsite.com/thankyou.html" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Link to dark mode & hamburger menu script -->
+  </head>
+
+  <body>
+    <!-- Header and Navigation -->
+    <header>
+      <div class="header-container">
+        <h1>Chamber of Commerce</h1>
+        <!-- Hamburger Menu Button -->
+        <button id="menu-toggle" aria-label="Toggle navigation menu">
+          &#9776;
+        </button>
+        <!-- Dark Mode Toggle Button -->
+        <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+      </div>
+      <!-- Navigation Bar -->
+      <nav id="menu" role="navigation" aria-label="Main navigation">
+        <ul>
+          <li>
+            <a href="index.html" aria-label="Go to Home" class="active">Home</a>
+          </li>
+          <li><a href="join.html" aria-label="Join the Chamber">Join us</a></li>
+          <li>
+            <a
+              href="thankyou.html"
+              aria-label="Thank You Page"
+              aria-current="page"
+              >Thank You</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Thank You Message Section -->
+      <section class="thank-you-section">
+        <h2>Thank You for Joining the Chamber of Commerce!</h2>
+        <p>
+          Your membership application has been successfully submitted. We
+          appreciate your interest in becoming a member and supporting the
+          Chamber. Your application will be reviewed by our team, and we will
+          reach out to you shortly with the next steps.
+        </p>
+        <p>
+          As a member of the Chamber, you will gain access to exclusive events,
+          networking opportunities, and resources that will help you grow your
+          business or organization. We are excited to have you on board and look
+          forward to working with you.
+        </p>
+        <p>
+          If you have any questions or need assistance, feel free to reach out
+          to us directly at
+          <a href="mailto:info@chamber.com" aria-label="Email the Chamber"
+            >info@chamber.com</a
+          >. Our team is here to help!
+        </p>
+        <p>
+          In the meantime, feel free to explore the various resources available
+          to members and stay updated on upcoming events and programs.
+        </p>
+        <!-- Call to Action -->
+        <div class="cta">
+          <p>Explore upcoming events:</p>
+          <a
+            href="events.html"
+            class="cta-button"
+            aria-label="See Upcoming Events"
+            >View Events</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+      <p>&copy; <span id="current-year"></span> Chamber of Commerce</p>
+      <p>Last Updated: <span id="last-modified"></span></p>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="scripts/script.js" defer></script>
+    <script src="scripts/links.js" defer></script>
+    <script src="scripts/darkmode-menu.js" defer></script>
+    <script src="scripts/directory.js" defer></script>
+  </body>
+</html>
