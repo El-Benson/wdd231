@@ -1,0 +1,42 @@
+[
+  {
+    "name": "National Museum",
+    "image": "images/museum.jpg",
+    "description": "Home to historical artifacts from the Benin Empire."
+  },
+  {
+    "name": "Oba's Palace",
+    "image": "images/palace.jpg",
+    "description": "A UNESCO heritage site and the traditional seat of power."
+  },
+  {
+    "name": "Benin Moat",
+    "image": "images/moat.jpg",
+    "description": "One of the largest man-made earthworks in the world."
+  },
+  {
+    "name": "Igun Street",
+    "image": "images/bronze.jpg",
+    "description": "Famous for bronze casting and cultural artistry."
+  },
+  {
+    "name": "Ogba Zoo",
+    "image": "images/zoo.jpg",
+    "description": "A natural reserve with various animal species."
+  },
+  {
+    "name": "Benin Mall",
+    "image": "images/mall.jpg",
+    "description": "A modern shopping center with restaurants and cinemas."
+  },
+  {
+    "name": "Edo Heritage Park",
+    "image": "images/heritage.jpg",
+    "description": "A venue showcasing Edo culture, food, and performances."
+  },
+  {
+    "name": "Emotan Statue",
+    "image": "images/emotan.jpg",
+    "description": "Statue commemorating a brave woman in Benin history."
+  }
+]
