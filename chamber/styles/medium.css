@@ -1,0 +1,29 @@
+@media (min-width: 640px) {
+  nav ul {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .sidebar {
+    flex: 1;
+  }
+
+  .main-content {
+    flex: 2;
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cta {
+    width: 70%;
+  }
+}
