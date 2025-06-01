@@ -156,17 +156,48 @@ function displaySpotlightAds() {
   fetch("chamber/data/members.json")
     .then((res) => res.json())
     .then((data) => {
-      const topMembers = data.filter((m) =>
-        ["Gold", "Silver"].includes(m.membershipLevel)
+      const topMembers = data.companies.filter(
+        (m) => m.membershipLevel >= 2 // Gold (3) or Silver (2)
       );
       const random = topMembers.sort(() => 0.5 - Math.random()).slice(0, 3);
       spotlightContainer.innerHTML = "";
       random.forEach((member) => {
         const ad = document.createElement("div");
-        ad.innerHTML = `<h3>${member.name}</h3><p>${member.address}</p><p>${member.phone}</p>`;
+        ad.innerHTML = `
+          <h3>${member.name}</h3>
+          <p>${member.address}</p>
+          <p>${member.phone}</p>
+          <a href="${member.website}" target="_blank">Visit Website</a>
+        `;
         spotlightContainer.appendChild(ad);
       });
     });
+}
+
+function getMembershipLabel(level) {
+  return level === 3 ? "Gold" : level === 2 ? "Silver" : "Bronze";
+}
+
+function displayMembers(members) {
+  const directory = document.querySelector("#directory");
+  if (!directory) return;
+
+  directory.innerHTML = "";
+  members.forEach((member) => {
+    const card = document.createElement("div");
+    card.classList.add("member");
+    card.innerHTML = `
+      <img src="${member.logo}" alt="${member.name}">
+      <h3>${member.name}</h3>
+      <p>${member.address}</p>
+      <p>${member.phone}</p>
+      <a href="${member.website}" target="_blank">Visit Website</a>
+      <p class="membership">${getMembershipLabel(
+        member.membershipLevel
+      )} Member</p>
+    `;
+    directory.appendChild(card);
+  });
 }
 
 // INIT on DOMContentLoaded
