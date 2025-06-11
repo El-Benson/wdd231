@@ -96,7 +96,7 @@ nav ul li a:hover {
 /* Sections */
 .events,
 .weather,
-.spotlights {
+.spotlight {
   background: var(--input-background);
   padding: 20px;
   margin: 20px;
@@ -113,13 +113,14 @@ footer {
 }
 
 /* Main Layout */
+/* Mobile first: single column */
 .main-container {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr;
   gap: 20px;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 20px auto;
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 /* Sidebar */
@@ -146,7 +147,7 @@ footer {
   font-size: 1.5rem;
   border-bottom: 2px solid var(--link-color);
   padding-bottom: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 .sidebar p {
@@ -275,6 +276,19 @@ a:hover {
   gap: 20px;
   padding: 20px;
 }
+/* === Member Card in List View === */
+#directory.list .member-card {
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  padding: 15px;
+  gap: 1rem;
+}
+
+#directory.list .member-card img {
+  width: 100px;
+  height: 100px;
+}
 
 .member {
   background: #f9f9f9;
@@ -293,8 +307,10 @@ a:hover {
 }
 
 .view-toggle {
-  text-align: center;
-  margin: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 20px auto;
 }
 
 .view-toggle button {
@@ -314,10 +330,32 @@ a:hover {
 /* Grid and List View Styles */
 #directory.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+#directory.list {
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
+#gridView,
+#listView {
+  cursor: pointer;
+  border: none;
+  background-color: var(--background-color, #f0f0f0);
+  color: var(--text-color, #333);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius, 6px);
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
 
+#gridView.active,
+#listView.active {
+  background-color: var(--primary-color, #0077cc);
+  color: var(--contrast-text-color, #fff);
+  font-weight: bold;
+}
 #directory.list article {
   display: flex;
   align-items: center;
@@ -355,15 +393,28 @@ a:hover {
   flex-direction: column;
   gap: 1rem;
 }
+#directory.listView .member-card {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
+#directory.gridView .member-card {
+  flex-direction: column;
+  text-align: center;
+}
 .member-card {
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 10px;
   background: var(--card-bg, #fff);
+  border-radius: var(--border-radius, 6px);
+  box-shadow: 0 2px 10px var(--shadow-color, rgba(0, 0, 0, 0.1));
+  padding: 20px;
+  transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
 }
 
 .listView .member-card {
@@ -373,10 +424,29 @@ a:hover {
 }
 
 .member-card img {
-  max-width: 100px;
+  width: 100px;
   height: auto;
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius, 6px);
+  object-fit: contain;
 }
 
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* === Optional Transitions === */
+button {
+  transition: all 0.3s ease;
+}
+
+.member-card .card-content p,
+.member-card .card-content h3 {
+  margin: 0;
+}
 /* Join Form Section */
 .join-form-section {
   background: var(--input-background);
@@ -570,11 +640,40 @@ nav#menu.open {
     font-size: 14px;
   }
 
-  /* Hamburger Menu */
+  /* Hamburger button - hidden on desktop */
   #menu-toggle {
-    display: block;
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
   }
+  /* Responsive for small screens */
+  @media (max-width: 768px) {
+    /* Hide menu by default */
+    nav#menu ul {
+      flex-direction: column;
+      display: none;
+      justify-content: center;
+      background-color: #eee;
+      position: absolute;
+      top: 60px; /* adjust as needed */
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
 
+    /* Show menu when toggled */
+    nav#menu ul.open {
+      display: flex;
+    }
+
+    /* Show hamburger button */
+    #menu-toggle {
+      display: inline-block;
+      color: #000;
+    }
+  }
   #menu {
     display: none;
     position: absolute;
@@ -598,9 +697,13 @@ nav#menu.open {
   }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   #menu-toggle {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
   }
 
   nav#menu {
@@ -609,7 +712,22 @@ nav#menu.open {
 
   nav#menu ul {
     display: flex;
-    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1rem;
+  }
+
+  nav#menu ul li a {
+    text-decoration: none;
+    color: #000;
+    padding: 0.5rem 1rem;
+    display: block;
+  }
+  /* Highlight active page link */
+  nav#menu ul li a.active {
+    font-weight: bold;
+    border-bottom: 3px solid #0077cc;
   }
 }
 
@@ -654,4 +772,356 @@ nav#menu.open {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+@media (max-width: 768px) {
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--link-hover-color);
+  outline-offset: 2px;
+}
+
+/* Mobile-first base */
+/* Already well structured, but let's ensure no horizontal scroll */
+body,
+.main-container {
+  overflow-x: hidden; /* avoid horizontal scroll on mobile */
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 20px 1rem; /* some horizontal breathing room */
+  max-width: 100%; /* no overflow */
+  padding: 0;
+}
+
+.sidebar {
+  width: 100%;
+  box-shadow: 2px 2px 8px var(--shadow-color);
+  padding: 1rem;
+  text-align: center;
+}
+
+.main-content {
+  width: 100%;
+  padding: 0 1rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Membership benefits grid - mobile 2 cols */
+.membership-benefits .benefits {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+/* Directory grid - 1 column on mobile */
+#directory {
+  grid-template-columns: 1fr;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+/* Media query for desktop and tablets */
+@media (min-width: 768px) {
+  .main-container {
+    grid-template-columns: 1fr 3fr;
+    max-width: 1200px;
+    padding: 0 20px;
+  }
+
+  /* Sidebar fixed width on desktop */
+  .sidebar {
+    width: 100%; /* full width of sidebar column */
+    text-align: left;
+    padding: 2rem;
+    box-shadow: 3px 3px 12px var(--shadow-color);
+  }
+
+  /* Main content gets flexible area */
+  .main-content {
+    padding: 0;
+    gap: 2rem;
+  }
+
+  /* Membership benefits grid - 4 cols on desktop */
+  .membership-benefits .benefits {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  /* Directory grid - 3 cols on desktop */
+  #directory {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0;
+  }
+
+  /* Navigation links inline and spaced */
+  nav ul li {
+    display: inline-block;
+    margin: 0 1rem;
+  }
+
+  /* Hero padding adjustment */
+  .hero {
+    padding: 80px 40px;
+  }
+
+  /* Buttons consistent and bigger on desktop */
+  .cta-button,
+  button {
+    font-size: 1.1rem;
+    padding: 0.9rem 2rem;
+  }
+}
+
+/* Large desktops */
+@media (min-width: 1200px) {
+  .main-container {
+    max-width: 1400px;
+    gap: 3rem;
+  }
+
+  .membership-benefits .benefits {
+    gap: 3rem;
+  }
+
+  #directory {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+  }
+}
+/* Hide toggle button on large screens */
+#menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--contrast-text-color);
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+/* Navigation list default for desktop */
+nav ul#nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Active link style for wayfinding */
+nav ul#nav-list a.active {
+  font-weight: bold;
+  color: var(--link-color);
+  border-bottom: 2px solid var(--link-color);
+  padding-bottom: 4px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  #menu-toggle {
+    display: block;
+  }
+
+  nav ul#nav-list {
+    display: none; /* Hide menu by default on mobile */
+    flex-direction: column;
+    background-color: var(--menu-background-color);
+    position: absolute;
+    top: 60px; /* adjust to header height */
+    right: 0;
+    width: 200px;
+    padding: 1rem;
+    border-radius: 0 0 0 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  nav ul#nav-list.show {
+    display: flex;
+  }
+
+  nav ul#nav-list li {
+    margin: 0.75rem 0;
+  }
+}
+.nav-list a.active {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.weather-section {
+  padding: 1rem;
+  background-color: var(--light-bg, #f8f9fa);
+  border-radius: 10px;
+  margin: 2rem 0;
+  text-align: right;
+}
+
+.forecast-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: right;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.forecast-day {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  min-width: 120px;
+}
+.spotlight-member {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  max-width: 300px;
+}
+.spotlight-member img {
+  display: block;
+  margin-bottom: 10px;
+}
+#directory.list img {
+  display: none;
+}
+.member-card:focus {
+  outline: 3px solid #0078d7; /* or your accent color */
+  outline-offset: 2px;
+}
+@media (max-width: 767px) {
+  #menu-toggle {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  nav.open ul {
+    display: block;
+    text-align: left;
+  }
+
+  nav ul li {
+    display: block;
+    margin: 10px 0;
+  }
+}
+@media (max-width: 767px) {
+  nav ul {
+    display: none;
+  }
+  nav.open ul {
+    display: block;
+  }
+}
+#meet-greet-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #004080; /* Deep blue */
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+#meet-greet-banner p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+#meet-greet-banner strong {
+  font-weight: 700;
+}
+
+#close-banner-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+#close-banner-btn:hover,
+#close-banner-btn:focus {
+  color: #ffcc00; /* Gold color on hover/focus */
+  outline: none;
+}
+
+/* Push page content down to avoid being hidden behind the fixed banner */
+body {
+  padding-top: 3rem; /* Adjust this to banner height */
+}
+
+/* Responsive smaller font on narrow screens */
+@media (max-width: 600px) {
+  #meet-greet-banner p {
+    font-size: 0.9rem;
+  }
+}
+.spotlight {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.spotlight-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+  max-width: 250px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.spotlight-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+nav a.active {
+  font-weight: bold;
+  border-bottom: 2px solid var(--accent);
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
