@@ -1,89 +1,138 @@
-const cardsContainer = document.getElementById("cards-container");
-const visitMessage = document.getElementById("visit-message");
+// discover.js
 
-// Enhanced attractions loading
-async function loadAttractions() {
-  try {
-    const response = await fetch("data/attractions.json");
-    if (!response.ok) throw new Error("Network response was not ok");
+document.addEventListener("DOMContentLoaded", () => {
+  const gallery = document.querySelector(".gallery");
+  const visitMessage = document.getElementById("visit-message");
+  const lastModifiedElem = document.getElementById("last-modified");
+  const DATA_URL = "data/item.json";
 
-    const attractions = await response.json();
-    displayAttractions(attractions);
-  } catch (error) {
-    console.error("Error loading attractions:", error);
-    cardsContainer.innerHTML = `
-      <div class="error">
-        <p>⚠️ Failed to load attractions. Please try again later.</p>
-        <button onclick="loadAttractions()">Retry</button>
-      </div>
-    `;
-  }
-}
+  // --- LOCALSTORAGE VISIT MESSAGE LOGIC ---
+  function updateVisitMessage() {
+    const now = Date.now();
+    const lastVisit = localStorage.getItem("lastVisit");
 
-// Enhanced attraction display
-function displayAttractions(attractions) {
-  cardsContainer.innerHTML = "";
-
-  attractions.forEach((attraction) => {
-    const card = document.createElement("div");
-    card.className = "attraction-card";
-    card.innerHTML = `
-      <h3>${attraction.name}</h3>
-      <figure>
-        <img src="${attraction.image}" alt="${attraction.name}" loading="lazy">
-        <figcaption>${attraction.category}</figcaption>
-      </figure>
-      <p class="description">${attraction.description}</p>
-      <div class="card-footer">
-        <p class="location">📍 ${attraction.location}</p>
-        <button aria-label="Learn more about ${attraction.name}">More Info</button>
-      </div>
-    `;
-    cardsContainer.appendChild(card);
-  });
-}
-
-// Enhanced visit message with formatting
-function showVisitMessage() {
-  const now = Date.now();
-  const lastVisit = localStorage.getItem("lastVisit");
-  const messageEl = document.createElement("div");
-  messageEl.className = "visit-message";
-
-  if (!lastVisit) {
-    messageEl.innerHTML = `
-      <p>🆕 <strong>First visit?</strong> Welcome!</p>
-      <p>Explore what our city has to offer!</p>
-    `;
-  } else {
-    const diffDays = Math.floor((now - lastVisit) / (1000 * 60 * 60 * 24));
-
-    if (diffDays === 0) {
-      messageEl.innerHTML = `
-        <p>🔄 <strong>Back so soon!</strong></p>
-        <p>We're glad you're enjoying our city!</p>
-      `;
+    if (!lastVisit) {
+      // First visit
+      visitMessage.textContent =
+        "Welcome! Let us know if you have any questions.";
     } else {
-      messageEl.innerHTML = `
-        <p>⏱️ <strong>Last visit:</strong> ${diffDays} day${
-        diffDays !== 1 ? "s" : ""
-      } ago</p>
-        <p>Check out what's new since then!</p>
-      `;
+      const diffMs = now - Number(lastVisit);
+      const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+      if (diffDays < 1) {
+        visitMessage.textContent = "Back so soon! Awesome!";
+      } else {
+        visitMessage.textContent = `You last visited ${diffDays} day${
+          diffDays === 1 ? "" : "s"
+        } ago.`;
+      }
+    }
+    // Update lastVisit to now
+    localStorage.setItem("lastVisit", now.toString());
+  }
+
+  // --- SET LAST MODIFIED DATE ---
+  function updateLastModified() {
+    const lastMod = document.lastModified;
+    lastModifiedElem.textContent = lastMod;
+  }
+
+  // --- FETCH JSON DATA AND BUILD CARDS ---
+  async function fetchItems() {
+    try {
+      const response = await fetch(DATA_URL);
+      if (!response.ok)
+        throw new Error(`HTTP error! status: ${response.status}`);
+      const items = await response.json();
+      buildCards(items);
+    } catch (error) {
+      gallery.innerHTML = "<p>Sorry, failed to load items of interest.</p>";
+      console.error("Failed to fetch items:", error);
     }
   }
 
-  visitMessage.innerHTML = "";
-  visitMessage.appendChild(messageEl);
-  localStorage.setItem("lastVisit", now.toString());
-}
+  // --- BUILD CARDS ---
+  function buildCards(items) {
+    gallery.innerHTML = ""; // clear any existing content
+    items.forEach((item, index) => {
+      const card = document.createElement("article");
+      card.className = "card";
+      card.setAttribute("tabindex", "0"); // keyboard accessible
 
-// Initialize with error handling
-document.addEventListener("DOMContentLoaded", () => {
-  try {
-    loadAttractions();
-    showVisitMessage();
-  } catch (error) {
-    console.error("Initialization error:", error);
+      // Title
+      const h2 = document.createElement("h2");
+      h2.textContent = item.name;
+
+      // Figure and image with lazy loading
+      const figure = document.createElement("figure");
+      const img = document.createElement("img");
+      img.src = item.photo;
+      img.alt = `Photo of ${item.name}`;
+      img.loading = "lazy"; // lazy loading offscreen images
+      img.width = 300;
+      img.height = 200;
+      figure.appendChild(img);
+
+      // Address
+      const address = document.createElement("address");
+      address.textContent = item.address;
+
+      // Description
+      const p = document.createElement("p");
+      p.textContent = item.description;
+
+      // Learn More button
+      const btn = document.createElement("button");
+      btn.textContent = "Learn More";
+      btn.type = "button";
+      btn.setAttribute("aria-label", `Learn more about ${item.name}`);
+      // Optional: add event to show modal or link elsewhere here
+      // For now, just alert with name
+      btn.addEventListener("click", () => {
+        alert(`More info about ${item.name}:\n\n${item.description}`);
+      });
+
+      // Append all elements to card
+      card.append(h2, figure, address, p, btn);
+
+      // Append card to gallery
+      gallery.appendChild(card);
+    });
   }
+
+  // Run all initialization
+  updateVisitMessage();
+  updateLastModified();
+  fetchItems();
 });
+
+async function loadItems() {
+  try {
+    const response = await fetch("data/item.json");
+    if (!response.ok) throw new Error("Network response was not ok");
+
+    const items = await response.json();
+
+    itemsContainer.innerHTML = ""; // Clear any existing content
+
+    items.forEach((item) => {
+      const itemElement = document.createElement("div");
+      itemElement.classList.add("item");
+
+      itemElement.innerHTML = `
+        <img src="${item.photo}" alt="${item.name}" loading="lazy" />
+        <div class="item-info">
+          <h3>${item.name}</h3>
+          <p><strong>Address:</strong> ${item.address}</p>
+          <p>${item.description}</p>
+        </div>
+      `;
+
+      itemsContainer.appendChild(itemElement);
+    });
+  } catch (error) {
+    console.error("Failed to load items:", error);
+    itemsContainer.innerHTML =
+      "<p>Sorry, failed to load items at this time.</p>";
+  }
+}
