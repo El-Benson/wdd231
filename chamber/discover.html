@@ -1,192 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Discover - Benin City Chamber of Commerce</title>
-    <link rel="stylesheet" href="styles/styles.css" />
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta
+      name="description"
+      content="Discover the attractions and features of Benin City by the Chamber of Commerce."
+    >
+    <meta name="author" content="Your Name" >
+    <title>Discover Benin City | Chamber of Commerce</title>
+    <link rel="stylesheet" href="styles/styles.css" >
     <link
       rel="stylesheet"
       href="styles/medium.css"
-      media="screen and (min-width: 640px)"
-    />
+      media="(min-width: 641px)"
+    >
     <link
       rel="stylesheet"
       href="styles/large.css"
-      media="screen and (min-width: 1024px)"
-    />
-
-    <!-- Link to the external JavaScript file -->
-    <script defer src="scripts/scripts.js"></script>
-    <script defer src="scripts/darkmode-menu.js"></script>
-    <meta
-      name="description"
-      content="Discover Benin City, Nigeria's cultural and business hub. Explore events, landmarks, and more."
-    />
-    <meta
-      property="og:title"
-      content="Discover - Benin City Chamber of Commerce"
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="images/benin-city.jpg" />
-    <meta property="og:url" content="https://yourwebsite.com/discover.html" />
-    <meta name="robots" content="index, follow" />
+      media="(min-width: 1025px)"
+    >
+    <script defer src="scripts/discover.js"></script>
   </head>
-
   <body>
-    <header>
-      <div class="header-container">
-        <h1>Benin City Chamber of Commerce</h1>
-
-        <!-- Hamburger Menu Button -->
-        <button id="menu-toggle" aria-label="Open navigation menu">
-          &#9776;
-        </button>
-
-        <!-- Dark Mode Toggle Button -->
-        <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+    <header class="site-header">
+      <div class="container">
+        <h1 class="site-title">Benin City Chamber of Commerce</h1>
+        <nav class="main-nav" aria-label="Primary Navigation">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li>
+              <a href="discover.html" class="nav-link current">Discover</a>
+            </li>
+            <li><a href="directory.html" class="nav-link">Directory</a></li>
+            <li><a href="join.html" class="nav-link">Join us</a></li>
+          </ul>
+        </nav>
       </div>
-
-      <!-- Improved navigation with ARIA roles and labels -->
-      <nav id="menu" class="hidden" role="navigation" aria-label="Main menu">
-        <ul>
-          <li><a href="index.html" aria-label="Go to homepage">Home</a></li>
-          <li>
-            <a href="about.html" aria-label="Learn about the Chamber">About</a>
-          </li>
-          <li>
-            <a
-              href="discover.html"
-              class="active"
-              aria-label="Discover more about Benin City"
-              >Discover</a
-            >
-          </li>
-          <li><a href="form.html" aria-label="Fill out the form">Form</a></li>
-          <li><a href="join.html" aria-label="Join the Chamber">Join Us</a></li>
-        </ul>
-      </nav>
     </header>
 
-    <main class="container">
-      <!-- Hero Image with Call to Action -->
-      <section class="hero">
-        <img
-          src="images/benin-hero.jpg"
-          alt="Benin City Skyline"
-          loading="lazy"
-        />
-        <div class="cta">
-          <h2>Explore the Heart of Benin City</h2>
-          <p>
-            Immerse yourself in the rich culture and vibrant energy of Benin
-            City. Discover its landmarks, events, and much more.
-          </p>
-          <a
-            href="events.html"
-            class="cta-button"
-            aria-label="Explore upcoming events"
-            >Explore Events</a
-          >
-        </div>
+    <main class="discover-grid">
+      <section class="sidebar" id="visit-message">
+        <h2>Visitor Info</h2>
+
+        <!-- Last visit message inserted here via JS -->
       </section>
 
-      <!-- Sidebar with sections for demographics, calendar, and visit message -->
-      <aside class="sidebar" role="complementary">
-        <section class="visit-message">
-          <h2>Welcome to Benin City!</h2>
-          <p id="visit-message">Checking last visit...</p>
-          <p>
-            Discover all the great things that Benin City, Nigeria has to offer!
-            From cultural events to the rich history, there’s always something
-            exciting to explore.
-          </p>
-        </section>
-
-        <section class="demographics">
-          <h2>Demographics</h2>
-          <p><strong>Population:</strong> 1.5M</p>
-          <p><strong>Median Age:</strong> 22</p>
-          <p>
-            <strong>Key Industries:</strong> Trade, Manufacturing, Technology
-          </p>
-          <p>
-            Benin City is a growing hub for industries like trade,
-            manufacturing, and technology, making it a strategic location for
-            businesses and entrepreneurs.
-          </p>
-        </section>
-
-        <section class="calendar">
-          <h2>Event Calendar</h2>
-          <p id="current-date"></p>
-          <p>
-            Stay up to date with our exciting events and festivals. Benin City
-            hosts a variety of cultural and business events throughout the year
-            that you can attend.
-          </p>
-          <p>Upcoming Events:</p>
-          <ul>
-            <li>Benin Festival - May 2025</li>
-            <li>Chamber Networking Event - June 2025</li>
-          </ul>
-        </section>
-      </aside>
-
-      <!-- Main content for local attractions -->
-      <section class="main-content">
-        <h2>Explore Local Attractions</h2>
-        <p>
-          Benin City is rich in culture, history, and natural beauty. Whether
-          you're interested in historical sites, local markets, or vibrant
-          festivals, you'll find something special here.
-        </p>
-        <p>Here are some of the top attractions in Benin City:</p>
-        <div class="image-grid">
-          <figure>
-            <img src="images/land.jpeg" alt="City Landmark" loading="lazy" />
-            <figcaption>City Landmark</figcaption>
-          </figure>
-          <figure>
-            <img src="images/market.jpeg" alt="Market Scene" loading="lazy" />
-            <figcaption>Market Scene</figcaption>
-          </figure>
-          <figure>
-            <img
-              src="images/festival.jpeg"
-              alt="Cultural Festival"
-              loading="lazy"
-            />
-            <figcaption>Cultural Festival</figcaption>
-          </figure>
-          <figure>
-            <img src="images/site.jpeg" alt="Historical Site" loading="lazy" />
-            <figcaption>Historical Site</figcaption>
-          </figure>
-          <figure>
-            <img src="images/park.jpeg" alt="Local Park" loading="lazy" />
-            <figcaption>Local Park</figcaption>
-          </figure>
-          <figure>
-            <img src="images/night.jpeg" alt="Night View" loading="lazy" />
-            <figcaption>Night View</figcaption>
-          </figure>
-        </div>
+      <section class="gallery" id="card-container">
+        <h2>Gallery</h2>
+        <!-- 8 cards generated dynamically here -->
       </section>
-
-      <!-- Dynamic weather section -->
-      <div id="weather-info" aria-live="polite"></div>
     </main>
 
-    <footer>
-      <p>
-        &copy; <span id="current-year"></span> Benin City Chamber of Commerce
-      </p>
-      <p>Last Updated: <span id="last-modified"></span></p>
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p>&copy; 2025 Benin City Chamber of Commerce. All rights reserved.</p>
+        <p>Last Modified: <span id="last-modified"></span></p>
+      </div>
     </footer>
 
-    <script defer src="scripts/discover.js"></script>
-    <script defer src="scripts/darkmode-menu.js"></script>
-    <script defer src="scripts/script.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById("last-modified").textContent =
+        document.lastModified;
+    </script>
   </body>
 </html>
