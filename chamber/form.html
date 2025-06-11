@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <title>Form Page - W04 Team Activity</title>
-    <link rel="stylesheet" href="styles/form.css" />
+    <link rel="stylesheet" href="styles/form.css" >
     <!-- Link to the external JavaScript file -->
     <script defer src="scripts/script.js"></script>
     <script defer src="scripts/darkmode-menu.js"></script>
     <meta
       name="description"
       content="Submit your information through the W04 Team Activity Form."
-    />
-    <meta property="og:title" content="Form Page - W04 Team Activity" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="images/form-page.jpg" />
-    <meta property="og:url" content="https://yourwebsite.com/form.html" />
-    <meta name="robots" content="index, follow" />
+    >
+    <meta property="og:title" content="Form Page - W04 Team Activity" >
+    <meta property="og:type" content="website" >
+    <meta property="og:image" content="images/form-page.jpg" >
+    <meta property="og:url" content="https://yourwebsite.com/form.html" >
+    <meta name="robots" content="index, follow" >
   </head>
 
   <body>
@@ -30,7 +30,7 @@
         <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
       </div>
       <!-- Navigation Menu -->
-      <nav id="menu" class="hidden" role="navigation" aria-label="Main menu">
+      <nav id="menu" class="hidden" aria-label="Main menu">
         <ul>
           <li><a href="index.html" aria-label="Go to homepage">Home</a></li>
           <li>
@@ -57,7 +57,7 @@
         <form action="record.html" method="get" id="form" class="form">
           <!-- Username Field -->
           <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required />
+          <input type="text" id="username" name="username" required >
           <p>Please enter a unique username that you'll use to log in.</p>
 
           <!-- Password Field -->
@@ -69,7 +69,7 @@
             required
             pattern="[A-Za-z0-9]{8,}"
             title="Password must be at least 8 characters and only alphanumeric characters."
-          />
+          >
           <p>
             Your password must be at least 8 characters long and should contain
             only letters and numbers.
@@ -82,7 +82,7 @@
             id="confirm-password"
             name="confirm-password"
             required
-          />
+          >
           <p>
             Confirm your password to ensure it matches the one you’ve entered
             above.
@@ -97,7 +97,7 @@
             required
             pattern="[a-zA-Z0-9._%+-]+@byui\.edu"
             title="Please enter a valid email address from the byui.edu domain"
-          />
+          >
           <p>
             Provide a valid email address, ideally your BYUI email, for
             communication purposes.
@@ -113,7 +113,7 @@
             max="10"
             step="1"
             value="5"
-          />
+          >
           <span id="rating-value">5</span>
           <p>
             Rate your experience with the page (1 being poor, 10 being
