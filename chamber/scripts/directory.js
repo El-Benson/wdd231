@@ -87,7 +87,8 @@ function displayBusinesses(businesses) {
 
 // Set view mode and save preference
 function setViewMode(mode) {
-  directory.className = mode;
+  directory.classList.remove("grid", "list");
+  directory.classList.add(mode);
   localStorage.setItem("viewMode", mode);
   gridView.classList.toggle("active", mode === "grid");
   listView.classList.toggle("active", mode === "list");
