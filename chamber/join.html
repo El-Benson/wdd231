@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <title>Join the Chamber - Membership Application</title>
-    <link rel="stylesheet" href="styles/form.css" />
+    <link rel="stylesheet" href="styles/form.css" >
     <script defer src="scripts/script.js"></script>
     <script defer src="scripts/darkmode-menu.js"></script>
   </head>
@@ -14,28 +14,22 @@
     <header>
       <div class="header-container">
         <h1>Chamber of Commerce</h1>
-        <!-- Hamburger Menu Button -->
-        <button id="menu-toggle" aria-label="Toggle navigation menu">
-          &#9776;
-        </button>
-        <!-- Dark Mode Toggle Button -->
-        <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+      <!-- Hamburger Menu Button -->
+<button id="menu-toggle" aria-label="Toggle navigation menu">&#9776;</button>
+
+<!-- Dark Mode Toggle Button -->
+<button id="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+
+<!-- Navigation Bar -->
+<nav id="menu" aria-label="Main navigation">
+  <ul>
+    <li><a href="index.html" aria-label="Home page">Home</a></li>
+    <li><a href="join.html" aria-label="Join the Chamber" class="active">Join</a></li>
+    <li><a href="thankyou.html" aria-label="Thank you for joining">Thank You</a></li>
+  </ul>
+</nav>
       </div>
-      <!-- Navigation Bar -->
-      <nav id="menu" role="navigation" aria-label="Main navigation">
-        <ul>
-          <li>
-            <a href="index.html" aria-label="Home page" class="active">Home</a>
-          </li>
-          <li><a href="join.html" aria-label="Join the Chamber">Join</a></li>
-          <li>
-            <a href="thankyou.html" aria-label="Thank you for joining"
-              >Thank You</a
-            >
-          </li>
-        </ul>
-      </nav>
-    </header>
+ </header>
 
     <main>
       <!-- Membership Application Form Section -->
@@ -55,11 +49,11 @@
         >
           <!-- First Name -->
           <label for="first-name">First Name:</label>
-          <input type="text" id="first-name" name="first-name" required />
+          <input type="text" id="first-name" name="first-name" required >
 
           <!-- Last Name -->
           <label for="last-name">Last Name:</label>
-          <input type="text" id="last-name" name="last-name" required />
+          <input type="text" id="last-name" name="last-name" required >
 
           <!-- Title/Position -->
           <label for="title">Title/Position:</label>
@@ -70,7 +64,7 @@
             pattern="[A-Za-z\s\-]{7,}"
             required
             title="Title must contain only letters, spaces, and hyphens with at least 7 characters"
-          />
+          >
 
           <!-- Email -->
           <label for="email">Email Address:</label>
@@ -80,20 +74,20 @@
             name="email"
             required
             placeholder="example@domain.com"
-            aria-describedby="emailHelp"
-          />
+          >
 
           <!-- Phone Number -->
           <label for="phone">Mobile Phone Number:</label>
-          <input type="tel" id="phone" name="phone" required />
+          <input type="tel" id="phone" name="phone" required >
 
           <!-- Business/Organization Name -->
           <label for="business-name">Business/Organization Name:</label>
-          <input type="text" id="business-name" name="business-name" required />
+          <input type="text" id="business-name" name="business-name" required >
 
           <!-- Membership Level -->
           <label for="membership-level">Membership Level:</label>
           <select id="membership-level" name="membership-level" required>
+            <option value="" disabled selected>Select Membership Level</option>
             <option value="NP">NP Membership (Non-profit)</option>
             <option value="Bronze">Bronze Membership</option>
             <option value="Silver">Silver Membership</option>
@@ -105,7 +99,7 @@
           <textarea id="description" name="description" required></textarea>
 
           <!-- Timestamp (hidden field) -->
-          <input type="hidden" id="timestamp" name="timestamp" value="" />
+          <input type="hidden" id="timestamp" name="timestamp" value="" >
 
           <!-- Submit Button -->
           <button type="submit">Submit Application</button>
@@ -113,84 +107,72 @@
       </section>
 
       <!-- Membership Levels and Benefits Section -->
-      <section class="membership-benefits">
-        <h3>Membership Levels & Benefits</h3>
-        <p>
-          Our Chamber offers four membership levels. Each level provides
-          different benefits, so choose the one that best fits your needs and
-          organization type.
-        </p>
-        <div class="benefits">
-          <!-- NP Membership -->
-          <div>
-            <h4>NP Membership</h4>
-            <p>
-              This membership is for non-profit organizations. It's free and
-              provides access to several valuable benefits that will help your
-              organization grow.
-            </p>
-            <ul>
-              <li>Access to special events and workshops</li>
-              <li>
-                Networking opportunities with other businesses and non-profits
-              </li>
-              <li>Discounted advertising rates on the Chamber website</li>
-            </ul>
-          </div>
-
-          <!-- Bronze Membership -->
-          <div>
-            <h4>Bronze Membership</h4>
-            <p>
-              For just NGN50 per year, the Bronze Membership offers a solid
-              starting point for businesses looking to expand their exposure and
-              resources.
-            </p>
-            <ul>
-              <li>All NP Membership benefits</li>
-              <li>Spotlight advertising on the Chamber website</li>
-              <li>
-                Exclusive access to training programs to enhance business skills
-              </li>
-            </ul>
-          </div>
-
-          <!-- Silver Membership -->
-          <div>
-            <h4>Silver Membership</h4>
-            <p>
-              At NGN100 per year, the Silver Membership includes all the
-              benefits of the Bronze Membership, with added features to give
-              your business even more visibility.
-            </p>
-            <ul>
-              <li>All Bronze Membership benefits</li>
-              <li>
-                Discounted rates for Chamber-hosted events and conferences
-              </li>
-              <li>Feature placement on the Chamber homepage for 1 month</li>
-            </ul>
-          </div>
-
-          <!-- Gold Membership -->
-          <div>
-            <h4>Gold Membership</h4>
-            <p>
-              For the highest level of membership at NGN200 per year, Gold
-              Membership provides premium benefits and exclusive opportunities
-              for your business.
-            </p>
-            <ul>
-              <li>All Silver Membership benefits</li>
-              <li>Priority placement at special events</li>
-              <li>
-                Exclusive email newsletters with industry insights and news
-              </li>
-            </ul>
-          </div>
+        <section class="membership-benefits">
+      <h3>Membership Levels & Benefits</h3>
+      <div class="card-container">
+        <!-- NP Membership -->
+         <div class="membership-card">
+          <h4>NP Membership</h4>
+          <p>Free membership for non-profits with basic benefits.</p>
+          <button onclick="document.getElementById('modal-np').showModal()">View Benefits</button>
         </div>
-      </section>
-    </main>
+
+        <!-- Bronze Membership -->
+         <div class="membership-card">
+          <h4>Bronze Membership</h4>
+          <p>NGN50/year with enhanced exposure and support.</p>
+          <button onclick="document.getElementById('modal-bronze').showModal()">View Benefits</button>
+        </div>
+
+        <!-- Silver Membership -->
+         <div class="membership-card">
+          <h4>Silver Membership</h4>
+          <p>NGN100/year with more visibility and promotion.</p>
+          <button onclick="document.getElementById('modal-silver').showModal()">View Benefits</button>
+        </div>
+
+        <!-- Gold Membership -->
+         <div class="membership-card">
+          <h4>Gold Membership</h4>
+          <p>NGN200/year with premium benefits and features.</p>
+          <button onclick="document.getElementById('modal-gold').showModal()">View Benefits</button>
+        </div>
+      </div>
+
+      <!-- Modals -->
+      <dialog id="modal-np">
+        <h4>NP Membership Benefits</h4>
+        <ul>
+          <li>Workshops, networking, discounted ads</li>
+        </ul>
+        <button onclick="document.getElementById('modal-np').close()">Close</button>
+      </dialog>
+
+      <dialog id="modal-bronze">
+        <h4>Bronze Benefits</h4>
+        <ul>
+          <li>All NP benefits + Spotlight Ads + Training</li>
+        </ul>
+        <button onclick="document.getElementById('modal-bronze').close()">Close</button>
+      </dialog>
+
+      <dialog id="modal-silver">
+        <h4>Silver Benefits</h4>
+        <ul>
+          <li>All Bronze benefits + Event Discounts + Homepage Feature</li>
+        </ul>
+        <button onclick="document.getElementById('modal-silver').close()">Close</button>
+      </dialog>
+
+      <dialog id="modal-gold">
+        <h4>Gold Benefits</h4>
+        <ul>
+          <li>All Silver benefits + Priority Events + Exclusive Newsletters</li>
+        </ul>
+        <button onclick="document.getElementById('modal-gold').close()">Close</button>
+      </dialog>
+    </section>
+  </main>
 
     <!-- Footer Section -->
     <footer>
