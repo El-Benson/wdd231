@@ -51,26 +51,38 @@ header {
 
 nav ul {
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 0;
   padding: 0;
-  text-align: center;
-}
-
-nav ul li {
-  display: inline;
-  margin: 0 15px;
 }
 
 nav ul li a {
+  color: #ffffff;
   text-decoration: none;
-  color: var(--contrast-text-color);
-  font-weight: bold;
-  transition: color 0.3s ease;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
+/* === Hover Effect === */
 nav ul li a:hover {
-  color: var(--link-hover-color);
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
 }
 
+/* === Wayfinding: Active Link === */
+nav ul li a.active,
+nav ul li a[aria-current="page"] {
+  background-color: #ffffff;
+  color: #004d40;
+  font-weight: bold;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
 /* Hero Section */
 .hero {
   background: url("../images/hero.jpg") no-repeat center;
@@ -600,10 +612,6 @@ nav#menu.open {
     padding: 10px;
   }
 
-  #menu {
-    display: none;
-  }
-
   #menu.show {
     display: block;
   }
@@ -642,11 +650,43 @@ nav#menu.open {
 
   /* Hamburger button - hidden on desktop */
   #menu-toggle {
-    display: none;
+    display: block;
     background: none;
     border: none;
     font-size: 2rem;
+    color: #000;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
     cursor: pointer;
+    z-index: 2000;
+  }
+  nav ul#nav-list {
+    display: none;
+    flex-direction: column;
+    background-color: #eee;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 1rem;
+    border-radius: 0 0 0 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+  nav ul#nav-list.show {
+    display: flex;
+  }
+
+  nav ul#nav-list li {
+    margin: 0.75rem 0;
+  }
+
+  nav ul#nav-list li a {
+    color: #000;
+    text-decoration: none;
+    display: block;
   }
   /* Responsive for small screens */
   @media (max-width: 768px) {
@@ -797,7 +837,7 @@ body,
 }
 
 .main-container {
-  display: flex;
+  display: grid;
   flex-direction: column;
   gap: 1.5rem;
   margin: 20px 1rem; /* some horizontal breathing room */
@@ -938,7 +978,7 @@ nav ul#nav-list a.active {
 /* Responsive styles */
 @media (max-width: 768px) {
   #menu-toggle {
-    display: block;
+    display: none;
   }
 
   nav ul#nav-list {
@@ -1029,14 +1069,11 @@ nav ul#nav-list a.active {
     margin: 10px 0;
   }
 }
-@media (max-width: 767px) {
-  nav ul {
-    display: none;
-  }
-  nav.open ul {
-    display: block;
-  }
+
+nav.open ul {
+  display: block;
 }
+
 #meet-greet-banner {
   position: fixed;
   top: 0;
@@ -1109,10 +1146,6 @@ body {
   height: auto;
   border-radius: 8px;
 }
-nav a.active {
-  font-weight: bold;
-  border-bottom: 2px solid var(--accent);
-}
 input:focus,
 textarea:focus,
 select:focus {
@@ -1124,4 +1157,12 @@ select:focus {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+nav a.active {
+  font-weight: bold;
+  text-decoration: underline;
+  color: var(--active-link-color, #007bff);
+}
+#menu.open {
+  display: block; /* or flex/grid based on layout */
 }
