@@ -68,3 +68,4 @@ export async function fetchAndDisplaySpotlights() {
     console.error(error);
   }
 }
+ 
