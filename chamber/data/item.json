@@ -1,42 +1,50 @@
 [
   {
-    "name": "National Museum",
-    "image": "images/museum.jpg",
-    "description": "Home to historical artifacts from the Benin Empire."
-  },
-  {
-    "name": "Oba's Palace",
-    "image": "images/palace.jpg",
-    "description": "A UNESCO heritage site and the traditional seat of power."
-  },
-  {
     "name": "Benin Moat",
-    "image": "images/moat.jpg",
-    "description": "One of the largest man-made earthworks in the world."
+    "address": "Ring Road, Benin City, Edo State, Nigeria",
+    "description": "An ancient earthwork surrounding the old Benin Kingdom, one of the largest man-made moats in the world.",
+    "photo": "images/benin-moat.webp"
+  },
+  {
+    "name": "Oba’s Palace",
+    "address": "Ring Road, Benin City, Edo State, Nigeria",
+    "description": "The historic royal palace of the Oba of Benin, rich in cultural heritage and traditional architecture.",
+    "photo": "images/oba-palace.jpeg"
+  },
+  {
+    "name": "Benin National Museum",
+    "address": "Museum Road, Benin City, Edo State, Nigeria",
+    "description": "Museum showcasing Benin artifacts, bronze works, and historical exhibits from the Benin Kingdom.",
+    "photo": "images/benin-national-museum.jpeg"
   },
   {
     "name": "Igun Street",
-    "image": "images/bronze.jpg",
-    "description": "Famous for bronze casting and cultural artistry."
+    "address": "Igun Street, Benin City, Edo State, Nigeria",
+    "description": "Famous street known for traditional bronze casting and local artisan workshops.",
+    "photo": "images/igun-street.jpeg"
   },
   {
-    "name": "Ogba Zoo",
-    "image": "images/zoo.jpg",
-    "description": "A natural reserve with various animal species."
+    "name": "Okomu National Park",
+    "address": "Okomu, Edo State, Nigeria (near Benin City)",
+    "description": "A protected rainforest reserve home to diverse wildlife and beautiful hiking trails.",
+    "photo": "images/okomu-national-park.jpeg"
   },
   {
-    "name": "Benin Mall",
-    "image": "images/mall.jpg",
-    "description": "A modern shopping center with restaurants and cinemas."
+    "name": "University of Benin",
+    "address": "Ugbowo, Benin City, Edo State, Nigeria",
+    "description": "One of Nigeria’s top universities, offering academic excellence and vibrant campus life.",
+    "photo": "images/uniben.jpeg"
   },
   {
-    "name": "Edo Heritage Park",
-    "image": "images/heritage.jpg",
-    "description": "A venue showcasing Edo culture, food, and performances."
+    "name": "Benin City Market",
+    "address": "New Benin Market, Benin City, Edo State, Nigeria",
+    "description": "A bustling market with a wide variety of goods including textiles, crafts, and fresh produce.",
+    "photo": "images/benin-city-market.jpeg"
   },
   {
-    "name": "Emotan Statue",
-    "image": "images/emotan.jpg",
-    "description": "Statue commemorating a brave woman in Benin history."
+    "name": "Akenzua Cultural Centre",
+    "address": "Sapele Road, Benin City, Edo State, Nigeria",
+    "description": "Cultural center dedicated to preserving and promoting Benin arts, crafts, and traditions.",
+    "photo": "images/akenzua-cultural-centre.jpeg"
   }
 ]
