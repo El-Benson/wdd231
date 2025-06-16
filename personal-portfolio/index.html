@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ade-Benson Kehinde Michael | Developer Portfolio</title>
+    <meta
+      name="description"
+      content="Kehinde Michael - Creative Web Developer Portfolio. Explore projects, contact options, and resume."
+    />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/larger.css" />
+    <script src="scripts/main.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar">
+        <h1 class="logo">Ade-Benson Kehinde Michael</h1>
+        <button id="menu-toggle" aria-label="Toggle menu">☰</button>
+        <ul id="menu" class="nav-links hidden">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="form.html">Form</a></li>
+          <li><a href="attributions.html">Attributions</a></li>
+        </ul>
+        <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌓</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-content">
+          <h2>Welcome to My Portfolio 👨🏽‍💻</h2>
+          <p>
+            I’m <strong>Ade-Benson Kehinde Michael</strong>, a creative Nigerian
+            web developer passionate about crafting elegant, responsive, and
+            purposeful digital experiences.
+          </p>
+          <p>
+            Scroll to explore my best work, tools I use, and how we can
+            collaborate.
+          </p>
+        </div>
+      </section>
+
+      <!-- Wayfinder Grid -->
+      <section class="wayfinder">
+        <h2>Explore</h2>
+        <div class="grid">
+          <a href="projects.html" class="card">
+            <h3>🚀 Projects</h3>
+            <p>View my featured frontend, backend, and full-stack creations.</p>
+          </a>
+          <a href="contact.html" class="card">
+            <h3>📬 Contact</h3>
+            <p>Let’s collaborate or just have a chat. I’m one message away!</p>
+          </a>
+          <a href="form.html" class="card">
+            <h3>📥 Join Form</h3>
+            <p>Interactive demo showcasing validation and accessibility.</p>
+          </a>
+          <a href="attributions.html" class="card">
+            <h3>📚 Attributions</h3>
+            <p>Credits to the open tools and APIs used in this site.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Weather Section -->
+      <section id="weather-section">
+        <h2>Weather Update</h2>
+        <p id="weather">Loading weather...</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        &copy; <span id="year"></span> Kehinde Michael. Built with HTML, CSS,
+        JS, and 💙.
+        <p><a href="https://www.loom.com/share/YOUR-VIDEO-ID" target="_blank">🎥 Watch My JS Demo Video</a></p>
+
+      </p>
+      <div class="footer-meta">
+        <p id="datetime"></p>
+        <p id="weather"></p>
+        <p id="last-visited"></p>
+      </div>
+    </footer>
+  </body>
+</html>
