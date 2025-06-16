@@ -59,9 +59,14 @@ function displayBusinesses(businesses) {
       : "No website available";
 
     card.innerHTML = `
-      <img src="${logo}" alt="${
-      biz.name
-    } logo" loading="lazy" width="150" height="100">
+      <img 
+        src="${logo}" 
+        alt="${biz.name} logo" 
+        loading="lazy" 
+        width="150" 
+        height="100" 
+        onerror="this.src='images/default-logo.png'; this.alt='Default logo';"
+      >
       <div class="card-content">
         <h3>${biz.name}</h3>
         <p class="address">${biz.address || "No address provided"}</p>
@@ -81,6 +86,7 @@ function displayBusinesses(businesses) {
         }</p>
       </div>
     `;
+
     directory.appendChild(card);
   });
 }
