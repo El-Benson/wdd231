@@ -318,6 +318,12 @@ function displayForecastOpenMeteo(data) {
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("timestamp").value = new Date().toISOString();
 });
+const menuBtn = document.getElementById("menu-toggle");
+const navMenu = document.getElementById("menu");
+
+menuBtn.addEventListener("click", () => {
+  navMenu.classList.toggle("open");
+});
 
 function mapWeatherCode(code) {
   const mapping = {
