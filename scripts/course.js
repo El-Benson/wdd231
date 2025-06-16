@@ -1,3 +1,5 @@
+// scripts/course.js
+
 const courses = [
   { code: "WDD 130", name: "Web Fundamentals", credits: 3, completed: true },
   {
@@ -47,59 +49,64 @@ const courses = [
 
 const courseListContainer = document.querySelector(".course-list");
 const creditCount = document.querySelector("#creditCount");
+const filterButtons = document.querySelectorAll(".filters button");
 
-function renderCourses(courseArray) {
+// 🧠 Render filtered courses and update total credits using reduce
+function renderCourses(filteredCourses) {
   courseListContainer.innerHTML = "";
-  let totalCredits = 0;
 
-  courseArray.forEach((course) => {
+  filteredCourses.forEach((course) => {
     const div = document.createElement("div");
     div.className = `course ${course.completed ? "completed" : "light"}`;
     div.innerHTML = `
-        <strong>${course.code}</strong><br>
-        ${course.name}<br>
-        Credits: ${course.credits}
-      `;
+      <strong>${course.code}</strong><br>
+      ${course.name}<br>
+      Credits: ${course.credits}
+    `;
     courseListContainer.appendChild(div);
-    totalCredits += course.credits;
   });
 
+  const totalCredits = filteredCourses.reduce(
+    (sum, course) => sum + course.credits,
+    0
+  );
   creditCount.textContent = `Total Credits: ${totalCredits}`;
 }
 
-const filterButtons = document.querySelectorAll(".filters button");
-
-function setFilterState(filter) {
-  localStorage.setItem("selectedFilter", filter);
+// 🗂️ Filter courses by subject area
+function filterCourses(filter) {
+  if (filter === "WDD") {
+    return courses.filter((course) => course.code.startsWith("WDD"));
+  } else if (filter === "CSE") {
+    return courses.filter((course) => course.code.startsWith("CSE"));
+  } else {
+    return courses;
+  }
 }
 
-function getFilterState() {
-  return localStorage.getItem("selectedFilter") || "all";
-}
+// 🖱️ Add event listeners to filter buttons
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const selectedFilter = button.dataset.filter;
+    localStorage.setItem("selectedFilter", selectedFilter);
+    updateUI(selectedFilter);
+  });
+});
 
-function updateFilterButtons(activeFilter) {
+// ✅ Highlight active filter button
+function updateFilterButtonStyles(activeFilter) {
   filterButtons.forEach((button) => {
     button.classList.toggle("active", button.dataset.filter === activeFilter);
   });
 }
 
-function applyFilter(filter) {
-  if (filter === "WDD") {
-    renderCourses(courses.filter((c) => c.code.startsWith("WDD")));
-  } else if (filter === "CSE") {
-    renderCourses(courses.filter((c) => c.code.startsWith("CSE")));
-  } else {
-    renderCourses(courses);
-  }
-  updateFilterButtons(filter);
+// 🎯 Main function to apply filter and render courses
+function updateUI(filter) {
+  const filteredCourses = filterCourses(filter);
+  renderCourses(filteredCourses);
+  updateFilterButtonStyles(filter);
 }
 
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const filter = button.dataset.filter;
-    setFilterState(filter);
-    applyFilter(filter);
-  });
-});
-
-applyFilter(getFilterState());
+// ⏪ Load last used filter from localStorage
+const savedFilter = localStorage.getItem("selectedFilter") || "all";
+updateUI(savedFilter);
